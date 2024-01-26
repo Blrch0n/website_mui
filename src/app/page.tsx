@@ -1,7 +1,9 @@
 "use client";
 
+import ActionAreaCard from "@/components/Card";
 import { CustomInput } from "@/components/CustomInput";
 import ResponsiveAppBar from "@/components/ResponsiveAppBar";
+import Footer from "@/components/footer";
 import { Stack } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 
@@ -36,6 +38,9 @@ export default function Home() {
         value={value}
       />
       <ResponsiveAppBar></ResponsiveAppBar>
+      <ActionAreaCard></ActionAreaCard>
+      <ActionAreaCard></ActionAreaCard>
+      <Footer></Footer>
     </Stack>
   );
 }

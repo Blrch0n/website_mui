@@ -14,7 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { CustomInput } from "./CustomInput";
 import { ChangeEvent, useState } from "react";
-import { ImageList, ImageListItem } from "@mui/material";
+import { Badge, ImageList, ImageListItem } from "@mui/material";
+import MailIcon from "@mui/icons-material/Mail";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 const pages = ["Нүүр", "Хоолны цэс", "Хүргэлтийн бүс"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -49,7 +51,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ width: "1440px", height: "57px" }}>
+    <AppBar position="static" sx={{ width: "1440px" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <ImageList sx={{ width: 41, height: 41 }} cols={1} rowHeight={41}>
@@ -133,41 +135,43 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-          <CustomInput
-            placeholder="Enter value..."
-            label=""
-            type="search"
-            onChange={handleChange}
-            value={value}
-          />
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+
+          <Box
+            sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}
+            gap={1}
+          >
+            <CustomInput
+              placeholder="Enter value..."
+              label=""
+              type="search"
+              onChange={handleChange}
+              value={value}
+              size="small"
+            />
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+                sx={{ gap: "2px" }}
+              >
+                <Badge badgeContent={4} color="error">
+                  <MailIcon />
+                </Badge>
+                <Typography>Cагс</Typography>
               </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+                sx={{ gap: "2px" }}
+              >
+                <Badge badgeContent={17} color="error">
+                  <PersonOutlineIcon />
+                </Badge>
+                <Typography>Нэвтрэх нэр</Typography>
+              </IconButton>
+            </Box>
           </Box>
         </Toolbar>
       </Container>

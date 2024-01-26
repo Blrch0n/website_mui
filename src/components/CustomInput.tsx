@@ -17,16 +17,29 @@ type CustomInputProps = {
   placeholder?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   type?: HTMLInputTypeAttribute;
+  size?: "small" | "medium";
 };
 
 export const CustomInput = (props: CustomInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { label, value, placeholder, onChange, type = "text" } = props;
+  const {
+    label,
+    value,
+    placeholder,
+    onChange,
+    type = "text",
+    size = "medium",
+  } = props;
   const handleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
   return (
-    <Stack gap={0.5} sx={{ width: "384px", height: "48px" }}>
+    <Stack
+      gap={0.5}
+      sx={{
+        width: type === "search" ? "260px" : "384px",
+      }}
+    >
       {label ? <Typography fontSize={14}>{label}</Typography> : null}
       <TextField
         placeholder={placeholder}
@@ -36,7 +49,7 @@ export const CustomInput = (props: CustomInputProps) => {
         sx={{ bgcolor: "#ECEDF0" }}
         inputProps={{
           style: {
-            padding: "14px 16px",
+            padding: size === "small" ? "8px" : "14px 16px",
           },
         }}
         InputProps={{
